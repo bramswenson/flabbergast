@@ -1,8 +1,27 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
 require 'bundler/setup'
+require 'commander/import'
+
 require 'flabbergast'
 
-puts '4x4 Wordgrid'
-puts '------------'
-puts 'There were 10 words found.'
+program :name,        'Flabbergast'
+program :version,     '0.0.1'
+program :description, 'Generate and solve word grid puzzles'
+
+command :run do |c|
+  c.syntax = '[options]'
+  c.option '--number NUMBER', Integer, 'Number letters in each direction on the grid'
+  c.option '--grid-file path', String, 'Path to a grid to solve'
+
+  c.action do |args, options|
+    options.default number: 4
+
+    puts "#{options.number}x#{options.number} Wordgrid"
+    puts '------------'
+    puts 'There were 10 words found.'
+
+  end
+end
+
+default_command :run

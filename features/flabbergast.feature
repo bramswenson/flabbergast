@@ -15,7 +15,6 @@ Feature: flabbergast command line interface
     And the output should contain "words found."
 
 
-  @wip
   Scenario: `flabbergast -n 8`
     Given I successfully run `flabbergast -n 8`
     Then the output should contain:
