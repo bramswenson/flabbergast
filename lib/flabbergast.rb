@@ -1,0 +1,2 @@
+module Flabbergast
+end
