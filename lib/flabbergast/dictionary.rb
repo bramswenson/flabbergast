@@ -2,9 +2,19 @@ require 'algorithms'
 require 'containers/trie'
 
 module Flabbergast
+  # Dictionary
+  #
+  # Used to load all words from a file into
+  # a prefix tree for searching.
   class Dictionary
-    attr_reader :words, :count
 
+    # @return [Containers::Trie] prefix tree of dictionary words
+    attr_reader :words
+
+    # @return [Integer] the number of valid words in the dictionary
+    attr_reader :count
+
+    # @param [String] dictionary_path the path to the dictionary file
     def initialize(dictionary_path)
       @count = 0
       @words = Containers::Trie.new
