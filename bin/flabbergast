@@ -22,11 +22,11 @@ command :run do |c|
   c.action do |args, options|
     options.default(
       size: 4,
-      dictionary_file: File.expand_path('../../dictionary.txt', __FILE__)
+      dictionary: File.expand_path('../../dictionary.txt', __FILE__)
     )
 
     grid       = Flabbergast::Grid.new(options)
-    dictionary = Flabbergast::Dictionary.new(options.dictionary_file)
+    dictionary = Flabbergast::Dictionary.new(options.dictionary)
     solver     = Flabbergast::Solver.new(dictionary, grid.raw_grid)
     words      = solver.solve!
     title = "#{grid.size}x#{grid.size} Wordgrid"
