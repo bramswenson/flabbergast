@@ -2,3 +2,7 @@
 $LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
 require 'bundler/setup'
 require 'flabbergast'
+
+puts '4x4 Wordgrid'
+puts '------------'
+puts 'There were 10 words found.'
