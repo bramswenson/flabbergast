@@ -45,16 +45,19 @@ Feature: flabbergast command line interface
     | B  | A  | T  |
     | F  | A  | T  |
     +----+----+----+
-    There were 10 words found.
-    AB
-    AT
-    BA
-    BAT
-    CAB
-    CAT
-    FA
-    FAT
-    TA
-    TAB
+    +--------------+--------------------------------------------------------------------------------------------------+
+    |                                           There were 10 words found.                                            |
+    +--------------+--------------------------------------------------------------------------------------------------+
+    | AB           | an abdominal muscle [n -S]                                                                       |
+    | AT           | in the position of [prep]                                                                        |
+    | BA           | the eternal soul, in Egyptian mythology [n -S]                                                   |
+    | BAT          | to hit a baseball [v BATTED, BATTING, BATS]                                                      |
+    | CAB          | to take or drive a taxicab [v CABBED, CABBING, CABS]                                             |
+    | CAT          | to hoist an anchor to the cathead [v CATTED, CATTING, CATS]                                      |
+    | FA           | the fourth tone of the diatonic musical scale [n -S]                                             |
+    | FAT          | having an abundance of flesh [adj FATTER, FATTEST] / to make {fat=adj} [v FATTED, FATTING, FATS] |
+    | TA           | an expression of gratitude [n -S]                                                                |
+    | TAB          | to name or designate [v TABBED, TABBING, TABS]                                                   |
+    +--------------+--------------------------------------------------------------------------------------------------+
     """
 

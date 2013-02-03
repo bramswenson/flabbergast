@@ -19,7 +19,9 @@ module Flabbergast
         (0..(@size-1)).to_a.reduce([]) do |words, position|
           current_string = @string[position..-1]
           if current_string.size >= 2
-            words << current_string if @dictionary.words.has_key?(current_string)
+            if @dictionary.words.has_key?(current_string)
+              words << [ current_string, @dictionary.words.get(current_string) ]
+            end
             words += self.class.new(current_string[0..-2], @dictionary).solve.value
           end
           words
