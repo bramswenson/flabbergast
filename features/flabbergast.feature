@@ -8,47 +8,53 @@ Feature: flabbergast command line interface
     Given I successfully run `flabbergast`
     Then the output should contain:
     """
-    4x4 Wordgrid
-    ------------
+    +---+---+---+---+
+    | 4x4 Wordgrid  |
+    +---+---+---+---+
     """
     And the output should contain "There were"
     And the output should contain "words found."
 
 
-  Scenario: `flabbergast -n 8`
-    Given I successfully run `flabbergast -n 8`
+  Scenario: `flabbergast -s 8`
+    Given I successfully run `flabbergast -s 8`
     Then the output should contain:
     """
-    8x8 Wordgrid
-    ------------
+    +---+---+---+---+---+---+---+---+
+    |         8x8 Wordgrid          |
+    +---+---+---+---+---+---+---+---+
     """
     And the output should contain "There were"
     And the output should contain "words found."
 
 
-  @wip
-  Scenario: `flabbergast -g tha_grid.txt`
+  Scenario: `flabbergast -f tha_grid.txt`
     Given I write to "tha_grid.txt" with:
     """
-    C|A|B
-    B|A|T
-    F|A|T
+    CAB
+    BAT
+    FAT
     """
-    And I successfully run `flabbergast -g tha_grid.txt`
+    And I successfully run `flabbergast -f tha_grid.txt`
     Then the output should contain:
     """
-    3x3 Wordgrid
-    ------------
-    """
-    And the output should contain "There were 10 words found."
-    And the output should contain:
-    """
+    +----+----+----+
+    | 3x3 Wordgrid |
+    +----+----+----+
+    | C  | A  | B  |
+    | B  | A  | T  |
+    | F  | A  | T  |
+    +----+----+----+
+    There were 10 words found.
+    AB
     AT
+    BA
     BAT
     CAB
     CAT
-    FAB
+    FA
     FAT
+    TA
     TAB
     """
 

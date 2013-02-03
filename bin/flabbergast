@@ -11,15 +11,22 @@ program :description, 'Generate and solve word grid puzzles'
 
 command :run do |c|
   c.syntax = '[options]'
-  c.option '--number NUMBER', Integer, 'Number letters in each direction on the grid'
-  c.option '--grid-file path', String, 'Path to a grid to solve'
+  c.option '--size NUMBER',  Integer, 'Number letters in each direction on the grid'
+  c.option '--file path',  String, 'Path to a grid to solve'
+  c.option '--dictionary path',  String, 'Path to a word dictionary'
 
   c.action do |args, options|
-    options.default number: 4
+    options.default(
+      size: 4,
+      dictionary_file: File.expand_path('../../dictionary.txt', __FILE__)
+    )
 
-    puts "#{options.number}x#{options.number} Wordgrid"
-    puts '------------'
-    puts 'There were 10 words found.'
+    grid = Flabbergast::Grid.new(options)
+    grid.solve!
+
+    puts grid
+    puts "There were #{grid.words.count} words found."
+    grid.words.each { |word| puts word }
 
   end
 end

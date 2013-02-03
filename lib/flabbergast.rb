@@ -1,2 +1,2 @@
-module Flabbergast
-end
+require 'flabbergast/grid'
+require 'flabbergast/solver'
