@@ -7,16 +7,16 @@ require 'terminal-table'
 require 'flabbergast'
 require 'flabbergast/grid'
 require 'flabbergast/dictionary'
-require 'flabbergast/solver'
+require 'flabbergast/grid_word_finder'
 
 program :name,        'Flabbergast'
 program :version,     '0.0.1'
-program :description, 'Generate and solve word grid puzzles'
+program :description, 'Generate grids of random letters and find words within them'
 
 command :run do |c|
   c.syntax = '[options]'
   c.option '--size NUMBER',  Integer, 'Number letters in each direction on the grid'
-  c.option '--file path',  String, 'Path to a grid to solve'
+  c.option '--file path',  String, 'Path to a grid to search within for words'
   c.option '--dictionary path',  String, 'Path to a word dictionary'
 
   c.action do |args, options|
@@ -27,23 +27,20 @@ command :run do |c|
 
     grid       = Flabbergast::Grid.new(options)
     dictionary = Flabbergast::Dictionary.new(options.dictionary)
-    solver     = Flabbergast::Solver.new(dictionary, grid.raw_grid)
-    words      = solver.solve!
+    finder     = Flabbergast::GridWordFinder.new(dictionary, grid.raw_grid)
+    words      = finder.find_words!
 
     grid_title = "#{grid.size}x#{grid.size} Wordgrid"
-    pretty_grid  = Terminal::Table.new(
+    puts Terminal::Table.new(
       title: grid_title,
       rows: grid.raw_grid
     ).to_s
 
     words_title = "There were #{words.count} words found."
-    pretty_words = Terminal::Table.new(
+    puts Terminal::Table.new(
       title: words_title,
       rows: words
     ).to_s
-
-    puts pretty_grid
-    puts pretty_words
 
   end
 end
