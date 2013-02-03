@@ -2,8 +2,6 @@ require 'algorithms'
 require 'containers/trie'
 
 module Flabbergast
-  # Dictionary
-  #
   # Used to load all words from a file into
   # a prefix tree for searching.
   class Dictionary
