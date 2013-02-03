@@ -23,7 +23,9 @@ module Flabbergast
 
     def load_dictionary_file(dictionary_path)
       File.readlines(dictionary_path).each do |line|
-        word, definition = line.split
+        parts = line.split
+        word = parts[0]
+        definition = parts[1..-1].join(' ')
         next unless word
         @count += 1
         @words.push(word, definition)
