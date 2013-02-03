@@ -2,6 +2,7 @@
 $LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
 require 'bundler/setup'
 require 'commander/import'
+require 'terminal-table'
 
 require 'flabbergast'
 
@@ -21,12 +22,16 @@ command :run do |c|
       dictionary_file: File.expand_path('../../dictionary.txt', __FILE__)
     )
 
-    grid = Flabbergast::Grid.new(options)
-    grid.solve!
+    grid       = Flabbergast::Grid.new(options)
+    dictionary = Flabbergast::Dictionary.new(options.dictionary_file)
+    solver     = Flabbergast::Solver.new(dictionary, grid.raw_grid)
+    words      = solver.solve!
+    title = "#{grid.size}x#{grid.size} Wordgrid"
+    pretty_grid = Terminal::Table.new(title: title, rows: grid.raw_grid).to_s
 
-    puts grid
-    puts "There were #{grid.words.count} words found."
-    grid.words.each { |word| puts word }
+    puts pretty_grid
+    puts "There were #{words.count} words found."
+    words.each { |word| puts word }
 
   end
 end
