@@ -20,7 +20,9 @@ describe 'Grid' do
     end
 
     context 'given a file option' do
-      let(:file)    { File.expand_path('../../fixtures/test_grid.txt', __FILE__) }
+      let(:file)    {
+        File.expand_path('../../fixtures/test_grid.txt', __FILE__)
+      }
       let(:options) { OpenStruct.new(file: file) }
 
       it 'loads the grid from the file' do
