@@ -9,14 +9,13 @@ module Flabbergast
     def initialize(string, dictionary)
       @string     = string
       @dictionary = dictionary
-      @size       = string.size
     end
 
     # Recursively search the string for words from the dictionary
     # @return [Celluloid::Future] a future that finds words in the string
     def find_words!
       Celluloid::Future.new do
-        (0..(@size-1)).to_a.reduce([]) do |words, position|
+        (0..(@string.size-1)).to_a.reduce([]) do |words, position|
           current_string = @string[position..-1]
           if current_string.size >= 2
             if @dictionary.words.has_key?(current_string)
