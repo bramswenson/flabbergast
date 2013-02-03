@@ -16,8 +16,9 @@ module Flabbergast
     end
 
     def validate_grid
-      # TODO: better validation
-      raise ArgumentError, 'malformed grid' unless @grid.size == @grid[0].size
+      @grid.each do |row|
+        raise ArgumentError, 'malformed grid' if row.size != @grid.size
+      end
     end
   end
 end
