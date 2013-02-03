@@ -15,18 +15,32 @@ module Flabbergast
       futures = %w( rows columns diagonals ).map do |direction|
         send "solve_#{direction}"
       end
-      futures.each { |future| words += future.value }
+      words += words_from_futures(futures)
       words.sort
     end
 
     private
 
+    def words_from_futures(futures)
+      futures.reduce([]) do |words, future|
+        words += future.value
+        words
+      end
+    end
+
+    def solve_and_collect_words(string)
+      futures = [ string, string.reverse ].map do |string|
+        Flabbergast::StringSolver.new(string, @dictionary).solve
+      end
+      words_from_futures(futures)
+    end
+
+    # NOTE: long term these solve_ methods might be better as classes
     def solve_rows
       Celluloid::Future.new do
         # search each row and its substrings forward and back
         @grid.reduce([]) do |words, row|
-          words += Flabbergast::StringSolver.new(row.join, @dictionary).solve.value
-          words += Flabbergast::StringSolver.new(row.reverse.join, @dictionary).solve.value
+          words += solve_and_collect_words(row.join)
           words
         end
       end
@@ -37,8 +51,7 @@ module Flabbergast
         # search each column and its substrings forward and back
         (0..@grid.size-1).to_a.reduce([]) do |words, n|
           row_string = @grid.map{|row| row[n]}
-          words += Flabbergast::StringSolver.new(row_string, @dictionary).solve.value
-          words += Flabbergast::StringSolver.new(row_string.reverse, @dictionary).solve.value
+          words += solve_and_collect_words(row_string)
           words
         end
       end
@@ -49,6 +62,7 @@ module Flabbergast
         # search each diagonal and its substrings forward and back
         # only works corner to corner at the moment, needs quite a bit
         # more work to be useful and to search outside corners
+        # omega mess though, so i'm ok with it
         grid_range = (0..@grid.size-1).to_a
         words = []
         diag1 = grid_range.reduce([]) do |word, x|
@@ -59,10 +73,8 @@ module Flabbergast
           word << @grid[x][@grid.size-x]
           word
         end
-        words += Flabbergast::StringSolver.new(diag1.join, @dictionary).solve.value
-        words += Flabbergast::StringSolver.new(diag1.join.reverse, @dictionary).solve.value
-        words += Flabbergast::StringSolver.new(diag2.join, @dictionary).solve.value
-        words += Flabbergast::StringSolver.new(diag2.join.reverse, @dictionary).solve.value
+        words += solve_and_collect_words(diag1.join)
+        words += solve_and_collect_words(diag2.join)
         words
       end
     end
