@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'flabbergast/dictionary'
 
 describe 'Dictionary' do
   let(:file) { File.expand_path('../../fixtures/dictionary.txt', __FILE__) }

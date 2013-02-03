@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'flabbergast/grid_generator'
 
 describe 'GridGenerator' do
   let(:size) { 4 }

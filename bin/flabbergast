@@ -5,6 +5,9 @@ require 'commander/import'
 require 'terminal-table'
 
 require 'flabbergast'
+require 'flabbergast/grid'
+require 'flabbergast/dictionary'
+require 'flabbergast/solver'
 
 program :name,        'Flabbergast'
 program :version,     '0.0.1'

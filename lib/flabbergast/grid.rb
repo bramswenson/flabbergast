@@ -1,6 +1,5 @@
 require 'flabbergast/grid_loader'
 require 'flabbergast/grid_generator'
-require 'flabbergast/dictionary'
 
 module Flabbergast
   class Grid

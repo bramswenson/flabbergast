@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'flabbergast/grid_loader'
 
 describe 'GridLoader' do
   let(:good_file) { File.expand_path('../../fixtures/test_grid.txt', __FILE__) }

@@ -4,6 +4,7 @@ gem 'rake'
 gem 'algorithms'     # why reinvent the wheel
 gem 'commander'      # command line interface
 gem 'terminal-table' # for pretty printing grids
+gem 'celluloid'      # concurrency ftw
 
 gem 'rspec'          # unit testing
 gem 'cucumber'       # BDD

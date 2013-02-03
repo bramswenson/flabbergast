@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'ostruct'
+require 'flabbergast/grid'
 
 describe 'Grid' do
   subject { Flabbergast::Grid.new(options) }

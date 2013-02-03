@@ -1,2 +1,4 @@
-require 'flabbergast/grid'
-require 'flabbergast/solver'
+require 'celluloid'
+Celluloid.logger.level = ::Logger::Severity::INFO
+module Flabbergast
+end
