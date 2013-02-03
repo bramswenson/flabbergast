@@ -3,13 +3,18 @@ require 'celluloid'
 require 'flabbergast/string_solver'
 
 module Flabbergast
+  # Used to find all the words in a word grid puzzle
   class Solver
 
+    # @param [Flabbergast::Dictionary] dictionary a dictionary of valid words
+    # @param [Array[Array]] grid an array of arrays of letters
     def initialize(dictionary, grid)
       @dictionary = dictionary
       @grid       = grid
     end
 
+    # Search the grid for words from the dictionary
+    # @return [Set] a set of words found on the grid
     def solve!
       words = Set.new
       futures = %w( rows columns diagonals ).map do |direction|
