@@ -1,18 +1,17 @@
 # NAME
 
-  `flabbergast`
+  flabbergast
 
 # SYNOPSIS
 
-  `flabbergast [options]`
+  flabbergast \[options]
 
 # DESCRIPTION
 
-  `Generate grids of random letters and find words within them`
+  Generate grids of random letters and find words within them
 
 # OPTIONS
 
-```
   --size NUMBER
       Number letters in each direction on the grid
 
@@ -21,7 +20,6 @@
 
   --dictionary path
       Path to a word dictionary
-```
 
 # TESTING
 
