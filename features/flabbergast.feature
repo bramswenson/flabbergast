@@ -46,7 +46,7 @@ Feature: flabbergast command line interface
     | F  | A  | T  |
     +----+----+----+
     +--------------+--------------------------------------------------------------------------------------------------+
-    |                                           There were 11 words found.                                            |
+    |                                           There were 12 words found.                                            |
     +--------------+--------------------------------------------------------------------------------------------------+
     | AA           | rough, cindery lava [n -S]                                                                       |
     | AB           | an abdominal muscle [n -S]                                                                       |
@@ -56,6 +56,7 @@ Feature: flabbergast command line interface
     | CAB          | to take or drive a taxicab [v CABBED, CABBING, CABS]                                             |
     | CAT          | to hoist an anchor to the cathead [v CATTED, CATTING, CATS]                                      |
     | FA           | the fourth tone of the diatonic musical scale [n -S]                                             |
+    | FAB          | something created or constructed [n -S] / {fabulous=adj} [adj FABBER, FABBEST]                   |
     | FAT          | having an abundance of flesh [adj FATTER, FATTEST] / to make {fat=adj} [v FATTED, FATTING, FATS] |
     | TA           | an expression of gratitude [n -S]                                                                |
     | TAB          | to name or designate [v TABBED, TABBING, TABS]                                                   |

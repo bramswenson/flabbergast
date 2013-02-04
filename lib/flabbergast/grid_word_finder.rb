@@ -75,7 +75,7 @@ module Flabbergast
           word
         end
         diag2 = grid_range.reverse.reduce([]) do |word, x|
-          word << @grid[x][@grid.size-x]
+          word << @grid[x][(@grid.size-1)-x]
           word
         end
         words += find_and_collect_words(diag1.join)
