@@ -27,16 +27,12 @@ module Flabbergast
 
     def recursive_find_words_in_string(string)
       words = []
-      if word = find_word_in_dictionary(string)
+      if word = @dictionary.find_entry!(string)
         words << word
       end
       words += recursive_find_words_in_string(string[0..-2]) if string.size >= 2
       words
     end
 
-    def find_word_in_dictionary(substring)
-      dict_entry = @dictionary.find_entry!(substring)
-      dict_entry unless dict_entry.nil?
-    end
   end
 end
