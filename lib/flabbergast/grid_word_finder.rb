@@ -13,6 +13,16 @@ module Flabbergast
       @grid       = grid
     end
 
+    def find_words!
+      Celluloid::Future.new do
+        find_words
+      end
+    end
+
+    def find_words
+      raise UnimplmentedError, 'subclasses must define find_words'
+    end
+
     protected
 
     def words_from_futures(futures)
@@ -51,51 +61,45 @@ module Flabbergast
 
   # Used to find all the words in a word grids rows
   class GridRowWordFinder < BaseGridWordFinder
-    def find_words!
-      Celluloid::Future.new do
-        @grid.reduce([]) do |words, row|
-          words += find_and_collect_words(row.join)
-          words
-        end
+    def find_words
+      @grid.reduce([]) do |words, row|
+        words += find_and_collect_words(row.join)
+        words
       end
     end
   end
 
   # Used to find all the words in a word grids columns
   class GridColumnWordFinder < BaseGridWordFinder
-    def find_words!
-      Celluloid::Future.new do
-        (0..@grid.size-1).to_a.reduce([]) do |words, n|
-          row_string = @grid.map{|row| row[n]}
-          words += find_and_collect_words(row_string)
-          words
-        end
+    def find_words
+      (0..@grid.size-1).to_a.reduce([]) do |words, n|
+        row_string = @grid.map{|row| row[n]}
+        words += find_and_collect_words(row_string)
+        words
       end
     end
   end
 
   # Used to find all the words in a word grids diagonals
   class GridDiagonalWordFinder < BaseGridWordFinder
-    def find_words!
-      Celluloid::Future.new do
-        # search each diagonal and its substrings forward and back
-        # only works corner to corner at the moment, needs quite a bit
-        # more work to be useful and to search outside corners
-        # omega mess though, so i'm ok with it
-        grid_range = (0..@grid.size-1).to_a
-        words = []
-        diag1 = grid_range.reduce([]) do |word, x|
-          word << @grid[x][x]
-          word
-        end
-        diag2 = grid_range.reverse.reduce([]) do |word, x|
-          word << @grid[x][(@grid.size-1)-x]
-          word
-        end
-        words += find_and_collect_words(diag1.join)
-        words += find_and_collect_words(diag2.join)
-        words
+    def find_words
+      # search each diagonal and its substrings forward and back
+      # only works corner to corner at the moment, needs quite a bit
+      # more work to be useful and to search outside corners
+      # omega mess though, so i'm ok with it
+      grid_range = (0..@grid.size-1).to_a
+      words = []
+      diag1 = grid_range.reduce([]) do |word, x|
+        word << @grid[x][x]
+        word
       end
+      diag2 = grid_range.reverse.reduce([]) do |word, x|
+        word << @grid[x][(@grid.size-1)-x]
+        word
+      end
+      words += find_and_collect_words(diag1.join)
+      words += find_and_collect_words(diag2.join)
+      words
     end
   end
 end
