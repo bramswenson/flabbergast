@@ -49,7 +49,8 @@ module Flabbergast
       words.sort
     end
   end
-  # Used to find all the words in a word grid row
+
+  # Used to find all the words in a word grids rows
   class GridRowWordFinder < BaseGridWordFinder
     def find_words!
       Celluloid::Future.new do
@@ -61,7 +62,7 @@ module Flabbergast
     end
   end
 
-  # Used to find all the words in a word grid column
+  # Used to find all the words in a word grids columns
   class GridColumnWordFinder < BaseGridWordFinder
     def find_words!
       Celluloid::Future.new do
@@ -74,7 +75,7 @@ module Flabbergast
     end
   end
 
-  # Used to find all the words in a word grid diagonal
+  # Used to find all the words in a word grids diagonals
   class GridDiagonalWordFinder < BaseGridWordFinder
     def find_words!
       Celluloid::Future.new do
