@@ -37,7 +37,6 @@ module Flabbergast
     # @return [Set] a set of words found on the grid
     def find_words!
       words = Set.new
-      #futures = %w( rows columns diagonals ).map do |direction|
       futures = [
         Flabbergast::GridRowWordFinder,
         Flabbergast::GridColumnWordFinder,
