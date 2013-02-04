@@ -19,6 +19,14 @@ module Flabbergast
       load_dictionary_file(dictionary_path)
     end
 
+    # Find an entry in the dictionary
+    # @param [String] string the string to lookup in the dictionary
+    # @return [Array[String, String]] an array with the word and definition
+    def find_entry!(string)
+      string = string.upcase
+      [ string, words.get(string) ] if words.has_key?(string)
+    end
+
     private
 
     def load_dictionary_file(dictionary_path)

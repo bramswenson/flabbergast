@@ -46,8 +46,9 @@ Feature: flabbergast command line interface
     | F  | A  | T  |
     +----+----+----+
     +--------------+--------------------------------------------------------------------------------------------------+
-    |                                           There were 10 words found.                                            |
+    |                                           There were 11 words found.                                            |
     +--------------+--------------------------------------------------------------------------------------------------+
+    | AA           | rough, cindery lava [n -S]                                                                       |
     | AB           | an abdominal muscle [n -S]                                                                       |
     | AT           | in the position of [prep]                                                                        |
     | BA           | the eternal soul, in Egyptian mythology [n -S]                                                   |

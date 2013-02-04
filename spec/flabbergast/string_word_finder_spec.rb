@@ -21,7 +21,7 @@ describe 'StringWordFinder' do
   end
 
   context 'given a string with no words in it' do
-    let(:string) { 'frtyninr' }
+    let(:string) { 'fty' }
 
     it 'finds no words' do
       words.count.should be == 0
