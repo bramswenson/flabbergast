@@ -14,7 +14,9 @@ program :version,     '0.0.1'
 program :description, 'Generate grids of random letters and find words within them'
 
 command :run do |c|
-  c.syntax = '[options]'
+  c.name        = 'flabbergast'
+  c.description = 'Generate grids of random letters and find words within them'
+  c.syntax      = 'flabbergast [options]'
   c.option '--size NUMBER',  Integer, 'Number letters in each direction on the grid'
   c.option '--file path',  String, 'Path to a grid to search within for words'
   c.option '--dictionary path',  String, 'Path to a word dictionary'
